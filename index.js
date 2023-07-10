@@ -1,5 +1,6 @@
 const TelegramApi = require("node-telegram-bot-api");
 const {
+    menu,
     catalog,
     boxesCatalog,
     cardsCatalog,
@@ -16,10 +17,10 @@ const start = () => {
             command: "/start",
             description: "Начальное приветствие",
         },
-        {
-            command: "/catalog",
-            description: "Каталог товаров и услуг",
-        },
+        // {
+        //     command: "/catalog",
+        //     description: "Каталог товаров и услуг",
+        // },
     ]);
 
     bot.on("message", async (msg) => {
@@ -31,24 +32,27 @@ const start = () => {
                 await bot.sendSticker(chatId, "./assets/gift.tgs");
                 return bot.sendMessage(
                     chatId,
-                    `${msg.from.first_name} ${msg.from.last_name}, добро пожаловать в магазин "Бумажные истории!`
+                    `👋 
+                    ${msg.from.first_name} ${msg.from.last_name}, добро пожаловать в магазин 🎁 "Бумажные истории!`,
+                    menu
                 );
             } else {
                 await bot.sendSticker(chatId, "./assets/gift.tgs");
                 return bot.sendMessage(
                     chatId,
-                    `${msg.from.first_name}, добро пожаловать в магазин "Бумажные истории!`
+                    `👋 ${msg.from.first_name}, добро пожаловать в магазин 🎁 "Бумажные истории!`,
+                    menu
                 );
             }
         }
 
-        if (text === "/catalog") {
-            return bot.sendMessage(
-                chatId,
-                "Выберите интересующий вас товар",
-                catalog
-            );
-        }
+        // if (text === "/catalog") {
+        //     return bot.sendMessage(
+        //         chatId,
+        //         "Выберите интересующий вас товар 🛒",
+        //         catalog
+        //     );
+        // }
 
         return bot.sendMessage(
             chatId,
@@ -61,22 +65,45 @@ const start = () => {
         const chatId = msg.message.chat.id;
 
         switch (data) {
+            case "address":
+                await bot.sendMessage(
+                    chatId,
+                    "🏠 Ул. Притыцкого, 156, ТЦ «Грин Сити», Минск, Беларусь, https://yandex.by/maps/-/CHdRr~a"
+                );
+                break;
+            case "open":
+                await bot.sendMessage(chatId, "🕙 Ежедневно с 10.00 до 22.00");
+                break;
+            case "phoneNumber":
+                await bot.sendMessage(chatId, "📱 +375-29-675-23-15");
+                break;
+            case "catalog":
+                await bot.sendMessage(
+                    chatId,
+                    "Выберите интересующий вас товар 🛒",
+                    catalog
+                );
+                break;
             case "boxes":
                 await bot.sendMessage(
                     chatId,
-                    "Выберите размер коробки",
+                    "Выберите размер коробки 📦",
                     boxesCatalog
                 );
                 break;
             case "cards":
                 await bot.sendMessage(
                     chatId,
-                    "Выберите открытку",
+                    "Выберите открытку 🔖",
                     cardsCatalog
                 );
                 break;
             case "papers":
-                await bot.sendMessage(chatId, "Выберите бумагу", papersCatalog);
+                await bot.sendMessage(
+                    chatId,
+                    "Выберите бумагу 📃",
+                    papersCatalog
+                );
                 break;
         }
     });

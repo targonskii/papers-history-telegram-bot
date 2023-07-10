@@ -1,22 +1,48 @@
 module.exports = {
+    menu: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [
+                    {
+                        text: "🗂 Каталог",
+                        callback_data: "catalog",
+                    },
+                    {
+                        text: "🏠 Адрес",
+                        callback_data: "address",
+                    },
+                ],
+                [
+                    {
+                        text: "🕙 Режим работы:",
+                        callback_data: "open",
+                    },
+                    {
+                        text: "📱 Позвонить нам",
+                        callback_data: "phoneNumber",
+                    },
+                ],
+            ],
+        }),
+    },
     catalog: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
                 [
                     {
-                        text: "Коробки",
+                        text: "Коробки 📦",
                         callback_data: "boxes",
                     },
                 ],
                 [
                     {
-                        text: "Открытки",
+                        text: "Открытки 🔖",
                         callback_data: "cards",
                     },
                 ],
                 [
                     {
-                        text: "Бумага",
+                        text: "Бумага 📃",
                         callback_data: "papers",
                     },
                 ],
