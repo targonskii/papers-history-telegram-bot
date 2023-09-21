@@ -4,7 +4,7 @@ module.exports = {
             keyboard: [
                 [
                     {
-                        text: "🗂 Каталог товаров и услуг",
+                        text: "🛍️ Каталог",
                     },
                     {
                         text: "🏠 Адрес",
@@ -64,7 +64,7 @@ module.exports = {
             inline_keyboard: [
                 [
                     {
-                        text: "🎁 Подобрать коробку по вашему размеру",
+                        text: "🎁 Подобрать коробку по размеру",
                         callback_data: "find_box",
                     },
                 ],
@@ -116,6 +116,19 @@ module.exports = {
                     {
                         text: "Цветная бумага",
                         callback_data: "colorPaper",
+                    },
+                ],
+            ],
+        }),
+    },
+
+    wantToBuy: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [
+                    {
+                        text: "🤩 ХОЧУ КУПИТЬ!",
+                        callback_data: "buy",
                     },
                 ],
             ],
